@@ -3266,7 +3266,7 @@ td, th {
 }
 
 .center, .center-align {
-  text-align: center;
+  text-align: center !important;
 }
 
 .left {
