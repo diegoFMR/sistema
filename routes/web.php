@@ -11,19 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/loguearse', [
-	'uses' => 'LoginController@login',
-]);
-
 Route::group(['middleware' => 'auth'], function(){
+	Route::get('/', function () {
+	    return view('auth/login');
+	});
+
 	Route::get('super/admin/dashboard', function(){
 		return view('superadmin/dashboard');
 	})->name('super/admin/dashboard');

@@ -24,6 +24,19 @@
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>
               @else
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"> Agregar <span class="caret"></span><i class="material-icons right">arrow_drop_down</i></a></li>
+                  <!-- Dropdown Structure -->
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                    </li>
+                </ul>
                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ Auth::user()->name }} <span class="caret"></span><i class="material-icons right">arrow_drop_down</i></a></li>
                   <!-- Dropdown Structure -->
                 <ul id="dropdown1" class="dropdown-content">
