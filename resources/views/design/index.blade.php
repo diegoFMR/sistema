@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+@extends('layouts.bodeguero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -52,11 +52,16 @@
             }
         </style>
 @section('content')
+    @if(session()->has('message'))
+        <div class="message" data-type="success" data-message="{{ session()->get('message') }}">
+
+        </div>
+    @endif
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ route('add-design') }}">Add</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -66,8 +71,35 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome Llantero
+                    Todos los Diseños
                 </div>
+                <table class="striped">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Diseño</th>
+                          <th>Aplicacion</th>
+                          <th>Fabricante</th>
+                          <th>Acciones</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($designs as $design)
+                          <tr>
+                            <td>{{ $design->id }}</td>
+                            <td>{{ $design->design }}</td>
+                            <td>{{ $design->aplicaciones->aplicacion }}</td>
+                            <td>{{ $design->fabricantes->name }}</td>
+                            <td>
+                                <a href="{{route('edit-design', array('design' => $design->id)) }}"> <i class="tinny material-icons">edit</i> </a> 
+                                <a href="{{ route('delete-design', array('design' => $design)) }}"> <i class="tinny material-icons">delete_forever</i> </a>
+                            </td>
+                          </tr>
+                        @endforeach
+                  </tbody>
+                </table>
             </div>
         </div>
+
 @endsection

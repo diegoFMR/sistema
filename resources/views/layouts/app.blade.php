@@ -11,13 +11,17 @@
     {!! MaterializeCSS::include_full() !!}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <style type="text/css">
+        .white-text {
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <nav>
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a href="/" class="brand-logo">Logo</a>
             <ul class="right hide-on-med-and-down">
               <!-- Dropdown Trigger -->
               @guest
@@ -49,6 +53,14 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $(".dropdown-button").dropdown();
+
+                  
+            if($('.message').length > 0){
+                if($('.message').attr("data-type") == "success"){
+                    Materialize.toast($('.message').attr("data-message") , 1000000, 'rounded blue darken-4'); // 'rounded' is the class I'm applying to the toast
+                }
+            }
+
         });
     </script>
 </body>

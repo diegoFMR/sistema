@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+@extends('layouts.bodeguero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -52,11 +52,16 @@
             }
         </style>
 @section('content')
+    @if(session()->has('message'))
+        <div class="message" data-type="success" data-message="{{ session()->get('message') }}">
+
+        </div>
+    @endif
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ route('add-medida') }}">Add</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -66,8 +71,31 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome Llantero
+                    Todas medidas
                 </div>
+                <table class="striped">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Medida</th>
+                          <th>Acciones</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($medidas as $medida)
+                          <tr>
+                            <td>{{ $medida->id }}</td>
+                            <td>{{ $medida->medida }}</td>
+                            <td>
+                                <a href="{{route('edit-medida', array('medida' => $medida->id)) }}"> <i class="tinny material-icons">edit</i> </a> 
+                                <a href="{{ route('delete-medida', array('medida' => $medida)) }}"> <i class="tinny material-icons">delete_forever</i> </a>
+                            </td>
+                          </tr>
+                        @endforeach
+                  </tbody>
+                </table>
             </div>
         </div>
+
 @endsection

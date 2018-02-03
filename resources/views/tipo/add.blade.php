@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+@extends('layouts.bodeguero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -56,18 +56,31 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/') }}">Home</a>
+                        
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
+                    <div class="row">
+                        <div class="col s12">
+                          <div class="card z-depth-4">
+                            <div class="card-content">
+                              <div class="row" style="margin-bottom: 0px !important;">
+                                {!! Form::model($tipo, ['method' => 'POST', 'action' => ['TipoController@store']]) !!}
+                                <div class="input-field">
+                                    {!! Form::token() !!}
+                                    {!! Form::label('name', 'Nombre del Tipo') !!}
+                                    {!! Form::text('name') !!}
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Welcome Llantero
+                                    {{ Form::button('<i class="material-icons right">send</i> Enviar', ['type' => 'submit', 'class' => 'btn waves-effect waves-light'] )  }}   
+                                </div>
+                                {!! Form::close() !!}
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
-            </div>
-        </div>
 @endsection

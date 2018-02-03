@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+@extends('layouts.bodeguero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -56,18 +56,34 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/') }}">Home</a>
+                        
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Welcome Llantero
+                    <div class="row">
+                        <div class="col s12">
+                          <div class="card z-depth-4">
+                            <div class="card-content">
+                              <div class="row" style="margin-bottom: 0px !important;">
+                                    <form action="{{ route('add_marca') }}" method="POST">
+                                        {{ csrf_field() }}
+                                      <div class="row">
+                                        <div class="input-field col s12">
+                                          <input id="marca" type="text" name="marca">
+                                          <label for="marca">Nombre Marca: </label>
+                                          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                            <i class="material-icons right">send</i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
-            </div>
-        </div>
 @endsection

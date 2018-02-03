@@ -1,5 +1,13 @@
 @extends('layouts.app')
+<style>
+  .padding-10 {
+    padding: 10%;
+  }
 
+  .background-grey-blue {
+    background-color: #374c67;
+  }
+</style>
 @section('content')
 <section>
             <div class="row padding-10 background-grey-blue">
@@ -18,8 +26,8 @@
                                     {{ csrf_field() }}
                                   <div class="row">
                                     <div class="input-field col s12">
-                                      <input placeholder="Usuario" id="email" type="text" class="validate" name="email">
-                                      <label for="email">Nombre de Usuario</label>
+                                      <input placeholder="Usuario" id="email" type="email" class="validate" name="email">
+                                      <label for="email"  data-error="wrong" data-success="right">Nombre de Usuario</label>
                                         @if ($errors->has('email'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('email') }}</strong>

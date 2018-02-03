@@ -36,6 +36,6 @@ class User extends Authenticatable
     }
 
     public function role_id(){
-        return $this->role_id;
+        return $this->tipoUsuario_id;
     }
 }
