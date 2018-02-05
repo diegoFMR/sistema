@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class Distribution extends Model
 {
     //
-    public function almacen(){
-    	return $this->hasMany(Almacen::class);
+    public function eje_distribucion(){
+    	return $this->hasMany(EjeDistribucion::class);
     }
 
     public function tropa(){
