@@ -26,6 +26,27 @@
             <li><a href="{{ route('login') }}">Login</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
         @else
+            <li>
+                <a class="dropdown-button" href="#!" data-activates="dropdown3"> Catalogos <span class="caret"></span><i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+                  <!-- Dropdown Structure -->
+                <ul id="dropdown3" class="dropdown-content">
+                    <li>
+                        <a href="{{ route('all-distribuciones') }}">
+                            Distribuciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('all-distribucion-posicions') }}">
+                            Posiciones en Tropa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('registrar-llanta') }}">
+                            Registrar
+                        </a>
+                    </li>
+                </ul>
             <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }} <span class="caret"></span><i class="material-icons right">arrow_drop_down</i></a></li>
               <!-- Dropdown Structure -->
             <ul id="dropdown2" class="dropdown-content">

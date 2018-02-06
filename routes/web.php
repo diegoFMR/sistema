@@ -96,8 +96,19 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::post('/design/getFabricantes', 'DesignController@getFabricanteAndAplicacion');
 
-	// Routes for new modles
+	// Routes for new models
+	Route::get('llantero/dashboard/distribuciones', 'DistributionController@index')->name('all-distribuciones');
+	Route::get('llantero/dashboard/add/distribucion', 'DistributionController@create')->name('add-distribucion');
+	Route::post('llantero/dashboard/add/distribucion', 'DistributionController@store')->name('add-distribucion');
+	Route::get('llantero/dashboard/edit/distribucion/{id}', 'DistributionController@edit')->name('edit-distribucion');
+	Route::patch('llantero/dashboard/update/distribucion/{id}', 'DistributionController@update')->name('update-distribucion');
 
+	Route::get('llantero/dashboard/posicionesDistribucion', 'DistributionPositionsController@index')->name('all-distribucion-posicions');
+	Route::get('llantero/dashboard/add/posicionesDistribucion', 'DistributionPositionsController@create')->name('add-distribucion-posicion');
+	Route::post('llantero/dashboard/add/posicionesDistribucion', 'DistributionPositionsController@store')->name('add-distribucion-posicion');
+	Route::get('llantero/dashboard/edit/posicionesDistribucion/{id}', 'DistributionPositionsController@edit')->name('edit-distribucion-posicion');
+	Route::patch('llantero/dashboard/update/posicionesDistribucion/{id}', 'DistributionPositionsController@update')->name('update-distribucion-posicion');
+/*
 	Route::get('bodega/dashboard/aplicaciones', 'AplicacionController@index')->name('all-aplicaciones');
 	Route::get('bodega/dashboard/add/aplicacion', 'AplicacionController@create')->name('add-aplicacion');
 	Route::post('bodega/dashboard/add/aplicacion', 'AplicacionController@store')->name('add-aplicacion');
@@ -128,12 +139,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('bodega/dashboard/edit/aplicacion/{id}', 'AplicacionController@edit')->name('edit-aplicacion');
 	Route::patch('bodega/dashboard/update/aplicacion/{id}', 'AplicacionController@update')->name('update-aplicacion');
 
-	Route::get('bodega/dashboard/aplicaciones', 'AplicacionController@index')->name('all-aplicaciones');
-	Route::get('bodega/dashboard/add/aplicacion', 'AplicacionController@create')->name('add-aplicacion');
-	Route::post('bodega/dashboard/add/aplicacion', 'AplicacionController@store')->name('add-aplicacion');
-	Route::get('bodega/dashboard/edit/aplicacion/{id}', 'AplicacionController@edit')->name('edit-aplicacion');
-	Route::patch('bodega/dashboard/update/aplicacion/{id}', 'AplicacionController@update')->name('update-aplicacion');
-
 
 	Route::get('bodega/dashboard/aplicaciones', 'AplicacionController@index')->name('all-aplicaciones');
 	Route::get('bodega/dashboard/add/aplicacion', 'AplicacionController@create')->name('add-aplicacion');
@@ -152,4 +157,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('bodega/dashboard/add/aplicacion', 'AplicacionController@store')->name('add-aplicacion');
 	Route::get('bodega/dashboard/edit/aplicacion/{id}', 'AplicacionController@edit')->name('edit-aplicacion');
 	Route::patch('bodega/dashboard/update/aplicacion/{id}', 'AplicacionController@update')->name('update-aplicacion');
+
+	*/
 });
