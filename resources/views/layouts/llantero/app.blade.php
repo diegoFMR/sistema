@@ -42,8 +42,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('registrar-llanta') }}">
-                            Registrar
+                        <a href="{{ route('all-ejes') }}">
+                            Ejes
                         </a>
                     </li>
                 </ul>

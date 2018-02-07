@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Eje;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class EjeController extends Controller
 {
@@ -15,6 +17,9 @@ class EjeController extends Controller
     public function index()
     {
         //
+        $ejes = Eje::all();
+        return view('eje.index')
+            ->with('ejes', $ejes);
     }
 
     /**
@@ -25,6 +30,8 @@ class EjeController extends Controller
     public function create()
     {
         //
+        $eje = new Eje;
+        return view('eje.add')->with('eje', $eje);
     }
 
     /**
@@ -36,6 +43,21 @@ class EjeController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = array(
+            'name' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return Redirect::to('add-construccion')
+                ->withErrors($validator);
+        }
+        else {
+            $eje = new Eje;
+            $eje->name = $request->name;
+            $eje->save();
+            return Redirect::to('llantero/dashboard/eje')->with('message', 'Construccion agregada.');
+        }
     }
 
     /**
@@ -55,9 +77,11 @@ class EjeController extends Controller
      * @param  \App\eje  $eje
      * @return \Illuminate\Http\Response
      */
-    public function edit(eje $eje)
+    public function edit(int $eje)
     {
         //
+        $eje = Eje::find($eje);
+        return view('eje.edit')->with('eje', $eje);
     }
 
     /**
@@ -70,6 +94,21 @@ class EjeController extends Controller
     public function update(Request $request, eje $eje)
     {
         //
+        $rules = array(
+            'name' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return Redirect::to('add-construccion')
+                ->withErrors($validator);
+        }
+        else {
+            $eje = Eje::find($request->id);
+            $eje->name = $request->name;
+            $eje->save();
+            return Redirect::to('llantero/dashboard/eje')->with('message', 'Construccion editada exitosamente.');
+        }
     }
 
     /**

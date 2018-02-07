@@ -52,34 +52,49 @@
             }
         </style>
 @section('content')
+    @if(session()->has('message'))
+        <div class="message" data-type="success" data-message="{{ session()->get('message') }}">
+
+        </div>
+    @endif
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        
+                        <a href="{{ route('add-eje') }}">Add</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
-                    <div class="row">
-                        <div class="col s12">
-                          <div class="card z-depth-4">
-                            <div class="card-content">
-                              <div class="row" style="margin-bottom: 0px !important;">
-                                {!! Form::model($construccion, ['method' => 'POST', 'action' => ['ConstruccionController@store']]) !!}
-                                <div class="input-field">
-                                    {!! Form::token() !!}
-                                    {!! Form::label('name', 'Nombre Construccion') !!}
-                                    {!! Form::text('name') !!}
-                                    {{ Form::button('<i class="material-icons right">send</i> Enviar', ['type' => 'submit', 'class' => 'btn waves-effect waves-light'] )  }}   
-                                </div>
-                                {!! Form::close() !!}
-                                  </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+            <div class="content">
+                <div class="title m-b-md">
+                    Todos los ejes
                 </div>
+                <table class="striped">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Acciones</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($ejes as $eje)
+                          <tr>
+                            <td>{{ $eje->id }}</td>
+                            <td>{{ $eje->name }}</td>
+                            <td>
+                                <a href="{{route('edit-eje', array('eje' => $eje->id)) }}"> <i class="tinny material-icons">edit</i> </a> 
+                            </td>
+                          </tr>
+                        @endforeach
+                  </tbody>
+                </table>
+            </div>
+        </div>
+
 @endsection

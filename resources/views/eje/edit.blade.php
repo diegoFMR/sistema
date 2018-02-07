@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+    @extends('layouts.llantero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -68,13 +68,10 @@
                           <div class="card z-depth-4">
                             <div class="card-content">
                               <div class="row" style="margin-bottom: 0px !important;">
-                                {!! Form::model($construccion, ['method' => 'POST', 'action' => ['ConstruccionController@store']]) !!}
-                                <div class="input-field">
+                                {!! Form::model($eje, ['method' => 'PATCH', 'action' => ['EjeController@update',$eje->id]]) !!}
                                     {!! Form::token() !!}
-                                    {!! Form::label('name', 'Nombre Construccion') !!}
                                     {!! Form::text('name') !!}
-                                    {{ Form::button('<i class="material-icons right">send</i> Enviar', ['type' => 'submit', 'class' => 'btn waves-effect waves-light'] )  }}   
-                                </div>
+                                    {{ Form::button('<i class="material-icons right">send</i> Editar', ['type' => 'submit', 'class' => 'btn waves-effect waves-light'] )  }}    
                                 {!! Form::close() !!}
                                   </div>
                             </div>

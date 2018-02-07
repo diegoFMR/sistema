@@ -108,6 +108,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('llantero/dashboard/add/posicionesDistribucion', 'DistributionPositionsController@store')->name('add-distribucion-posicion');
 	Route::get('llantero/dashboard/edit/posicionesDistribucion/{id}', 'DistributionPositionsController@edit')->name('edit-distribucion-posicion');
 	Route::patch('llantero/dashboard/update/posicionesDistribucion/{id}', 'DistributionPositionsController@update')->name('update-distribucion-posicion');
+
+	Route::get('llantero/dashboard/eje', 'EjeController@index')->name('all-ejes');
+	Route::get('llantero/dashboard/add/eje', 'EjeController@create')->name('add-eje');
+	Route::post('llantero/dashboard/add/eje', 'EjeController@store')->name('add-eje');
+	Route::get('llantero/dashboard/edit/eje/{id}', 'EjeController@edit')->name('edit-eje');
+	Route::patch('llantero/dashboard/update/eje/{id}', 'EjeController@update')->name('update-eje');
 /*
 	Route::get('bodega/dashboard/aplicaciones', 'AplicacionController@index')->name('all-aplicaciones');
 	Route::get('bodega/dashboard/add/aplicacion', 'AplicacionController@create')->name('add-aplicacion');
