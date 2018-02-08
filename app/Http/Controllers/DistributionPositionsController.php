@@ -58,7 +58,7 @@ class DistributionPositionsController extends Controller
             $distributionPositions = new DistributionPositions;
             $distributionPositions->name = $request->name;
             $distributionPositions->save();
-            return Redirect::to('llantero/dashboard')->with('message', 'Posicion en Distribucion agregado.');
+            return Redirect::to('llantero/dashboard/posicionesDistribucion')->with('message', 'Posicion en Distribucion agregada.');
         }
     }
 
@@ -109,7 +109,7 @@ class DistributionPositionsController extends Controller
             $distributionPositions = DistributionPositions::find($request->id);
             $distributionPositions->name = $request->name;
             $distributionPositions->save();
-            return Redirect::to('llantero/dashboard')->with('message', 'Posicion en Distribucion Editado.');
+            return Redirect::to('llantero/dashboard/posicionesDistribucion')->with('message', 'Posicion en Distribucion Editado.');
         }
     }
 

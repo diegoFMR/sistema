@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Distribution;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class DistributionController extends Controller
 {
@@ -29,12 +31,7 @@ class DistributionController extends Controller
     {
         //
         $distribution = new Distribution;
-        $data = array(
-            'distribution' => $distribution,
-            'aplicacion' => Aplicacion::pluck('aplicacion', 'id'),
-            'fabricantes' => Fabricante::pluck('name','id')
-        );
-        return view('distribution.add')->with('data', $data);
+        return view('distribution.add')->with('distribution', $distribution);
     }
 
     /**
@@ -46,12 +43,8 @@ class DistributionController extends Controller
     public function store(Request $request)
     {
         //
-        //dd($request->all()['aplicacions'][0]);
-        //dd($request->aplicacions[0]);
         $rules = array(
-            'distribution' => 'required',
-            'aplicacions' => 'required',
-            'fabricantes' => 'required'
+            'name' => 'required'
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -61,11 +54,9 @@ class DistributionController extends Controller
         }
         else {
             $distribution = new Distribution;
-            $distribution->design = $request->design;
-            $distribution->aplicacion_id = $request->aplicacions[0];
-            $distribution->fabricante_id = $request->fabricantes[0];
+            $distribution->name = $request->name;
             $distribution->save();
-            return Redirect::to('bodega/dashboard/diseños')->with('message', 'Construccion agregada.');
+            return Redirect::to('llantero/dashboard/distribuciones')->with('message', 'Distribucion agregada.');
         }
     }
 
@@ -86,16 +77,11 @@ class DistributionController extends Controller
      * @param  \App\Design  $design
      * @return \Illuminate\Http\Response
      */
-    public function edit(string $design)
+    public function edit(int $distribution)
     {
         //
         $distribution = Distribution::find($distribution);
-        $data = array(
-            'distribution' => $distribution,
-            'aplicacion' => Aplicacion::pluck('aplicacion', 'id'),
-            'fabricantes' => Fabricante::pluck('name','id')
-        );
-        return view('distribution.edit')->with('data', $data);
+        return view('distribution.edit')->with('distribution', $distribution);
 
     }
 
@@ -110,9 +96,7 @@ class DistributionController extends Controller
     {
         //
         $rules = array(
-            'distribution' => 'required',
-            'aplicacions' => 'required',
-            'fabricantes' => 'required'
+            'name' => 'required'
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -121,12 +105,10 @@ class DistributionController extends Controller
                 ->withErrors($validator);
         }
         else {
-            $distribution = Design::find($request->id);
-            $distribution->design = $request->distribution;
-            $distribution->aplicacion_id = $request->aplicacions[0];
-            $distribution->fabricante_id = $request->fabricantes[0];
+            $distribution = Distribution::find($request->id);
+            $distribution->name = $request->name;
             $distribution->save();
-            return Redirect::to('bodega/dashboard/diseños')->with('message', 'Construccion editada exitosamente.');
+            return Redirect::to('llantero/dashboard/distribuciones')->with('message', 'Distribucion editada exitosamente.');
         }
     }
 }

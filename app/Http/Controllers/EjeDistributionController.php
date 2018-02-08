@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\EjeDistribution;
+use App\EjeDistribucion;
+use App\Distribution;
 use Illuminate\Http\Request;
 
 class EjeDistributionController extends Controller
@@ -12,9 +13,20 @@ class EjeDistributionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $id)
     {
         //
+        $ejes = 
+        EjeDistribucion::where(['distribution_id' => $id])
+        ->orderBy("posicion", "ASC")
+        ->get();
+        $eje = Distribution::find($id)->name;
+        $data = array(
+            "ejes" => $ejes,
+            "eje_name" => $eje
+        );
+        return view('distribution.showEjes')
+            ->with('data', $data);
     }
 
     /**

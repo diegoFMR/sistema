@@ -1,4 +1,4 @@
-@extends('layouts.llantero.app')
+    @extends('layouts.llantero.app')
         <style>
             html, body {
                 background-color: #fff;
@@ -52,51 +52,31 @@
             }
         </style>
 @section('content')
-    @if(session()->has('message'))
-        <div class="message" data-type="success" data-message="{{ session()->get('message') }}">
-
-        </div>
-    @endif
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('add-distribucion') }}">Add</a>
+                        
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Todos las Distribuciones
+                    <div class="row">
+                        <div class="col s12">
+                          <div class="card z-depth-4">
+                            <div class="card-content">
+                              <div class="row" style="margin-bottom: 0px !important;">
+                                {!! Form::model($distribution, ['method' => 'PATCH', 'action' => ['DistributionController@update',$distribution->id]]) !!}
+                                    {!! Form::token() !!}
+                                    {!! Form::text('name') !!}
+                                    {{ Form::button('<i class="material-icons right">send</i> Editar', ['type' => 'submit', 'class' => 'btn waves-effect waves-light'] )  }}    
+                                {!! Form::close() !!}
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
-                <table class="striped">
-                    <thead>
-                      <tr>
-                          <th>ID</th>
-                          <th>Nombre</th>
-                          <th>Acciones</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach($distributions as $distribution)
-                          <tr>
-                            <td>{{ $distribution->id }}</td>
-                            <td>{{ $distribution->name }}</td>
-                            <td>
-                                <a href="{{route('ejes-por-distribucion', array('distribution' => $distribution->id)) }}"> <i class="tinny material-icons">layers</i> </a>
-                                <a href="{{route('edit-distribucion', array('distribution' => $distribution->id)) }}"> <i class="tinny material-icons">edit</i> </a>
-                                 
-                            </td>
-                          </tr>
-                        @endforeach
-                  </tbody>
-                </table>
-            </div>
-        </div>
-
 @endsection
