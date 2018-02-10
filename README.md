@@ -37,3 +37,6 @@ everything should be ready to run the internal server
 		--- git merge [yourname]
 		--- git push origin master
 
+-- REQUIREMENTS
+
+	PHP VERSION >= 7.0
