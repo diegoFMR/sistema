@@ -34,9 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
 		return view('llantero/dashboard');
 	})->name('llantero/dashboard');
 
-	Route::get('bodega/dashboard', function(){
-		return view('bodega/dashboard');
-	})->name('bodega/dashboard');
+	Route::get('bodega/dashboard', 'DashboardController@bodeguero')->name('bodega/dashboard');
 
 	Route::get('bodega/dashboard/marcas', 'MarcaController@index')->name('all_marcas');
 	Route::get('bodega/dashboard/add/marca', 'MarcaController@create')->name('add_marca');
