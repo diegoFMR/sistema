@@ -17,17 +17,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `SistemaDeLlantas_development`
+-- Database: `db_skyfleeter`
 --
 
 --
--- Dumping data for table `almacens`
+-- Dumping data for table `marcas`
 --
 
-INSERT INTO `almacens` (`id`, `marca_id`, `medida_id`, `dot`, `profundidad`, `construccion_id`, `tipo_id`, `design_id`, `costo`, `factura`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '1006', '0', 1, 1, 1, 3, '', NULL, NULL),
-(2, 3, 1, 'DOT', 'Prof', 2, 1, 2, 3, 'N/A', '2018-01-24 00:24:59', '2018-01-24 00:24:59'),
-(3, 2, 1, 'DOTRGSTR', '93', 2, 1, 2, NULL, NULL, '2018-01-28 08:55:59', '2018-01-28 08:55:59');
+INSERT INTO `marcas` (`id`, `marca`, `created_at`, `updated_at`) VALUES
+(1, 'Test Editado', '2018-01-08 00:10:19', '2018-01-09 09:04:07'),
+(2, 'Marca', '2018-01-09 09:04:27', '2018-01-16 07:04:08'),
+(3, 'Marca II', '2018-01-09 09:05:27', '2018-01-09 09:05:27'),
+(4, 'Micheline', '2018-01-16 07:03:23', '2018-01-16 07:03:23'),
+(5, 'toyo', '2018-01-16 07:03:41', '2018-01-16 07:03:41');
+
+--
+-- Dumping data for table `empresas`
+--
+
+INSERT INTO `empresas` (`id`, `descripcion`, `vigente`, `fecha_facturacion`, `ultimo_pago`, `created_at`, `updated_at`) VALUES
+(1, 'Empresa Test 1', 1, '2017-12-31', '2017-11-29 00:00:00', '2017-12-11 04:19:52', '2017-12-11 04:19:52');
+
+--
+-- Dumping data for table `fabricantes`
+--
+
+INSERT INTO `fabricantes` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fabricante prueba editado', '2018-01-15 00:37:20', '2018-01-15 00:40:18');
+
+--
+-- Dumping data for table `medidas`
+--
+
+INSERT INTO `medidas` (`id`, `medida`, `created_at`, `updated_at`) VALUES
+(1, 'Test editado medida', '2018-01-09 09:28:33', '2018-01-09 09:42:46');
 
 --
 -- Dumping data for table `aplicacions`
@@ -86,75 +109,6 @@ INSERT INTO `eje_distributions` (`id`, `eje_id`, `distribution_id`, `created_at`
 (4, 1, 1, '2018-02-08 16:16:58', '2018-02-08 16:16:59', 1, 1);
 
 --
--- Dumping data for table `empresas`
---
-
-INSERT INTO `empresas` (`id`, `descripcion`, `vigente`, `fecha_facturacion`, `ultimo_pago`, `created_at`, `updated_at`) VALUES
-(1, 'Empresa Test 1', 1, '2017-12-31', '2017-11-29 00:00:00', '2017-12-11 04:19:52', '2017-12-11 04:19:52');
-
---
--- Dumping data for table `fabricantes`
---
-
-INSERT INTO `fabricantes` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Fabricante prueba editado', '2018-01-15 00:37:20', '2018-01-15 00:40:18');
-
---
--- Dumping data for table `marcas`
---
-
-INSERT INTO `marcas` (`id`, `marca`, `created_at`, `updated_at`) VALUES
-(1, 'Test Editado', '2018-01-08 00:10:19', '2018-01-09 09:04:07'),
-(2, 'Marca', '2018-01-09 09:04:27', '2018-01-16 07:04:08'),
-(3, 'Marca II', '2018-01-09 09:05:27', '2018-01-09 09:05:27'),
-(4, 'Micheline', '2018-01-16 07:03:23', '2018-01-16 07:03:23'),
-(5, 'toyo', '2018-01-16 07:03:41', '2018-01-16 07:03:41');
-
---
--- Dumping data for table `medidas`
---
-
-INSERT INTO `medidas` (`id`, `medida`, `created_at`, `updated_at`) VALUES
-(1, 'Test editado medida', '2018-01-09 09:28:33', '2018-01-09 09:42:46');
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2013_12_11_032627_create_tipoUsuarios_table', 1),
-(2, '2014_10_12_000000_create_users_table', 1),
-(3, '2014_10_12_100000_create_password_resets_table', 1),
-(4, '2017_12_11_034053_create_empresas_table', 2),
-(5, '2017_12_11_034118_add_empresas_to_usuarios_migration', 2),
-(6, '2017_12_11_040124_add_intentos_to_usuarios_migration', 3),
-(7, '2017_12_11_164733_drop_tipoUsuario_id_users', 4),
-(8, '2017_12_11_165350_create_role_user_table', 4),
-(9, '2017_12_22_203110_create_marcas_table', 4),
-(10, '2017_12_22_220328_add_tipoUsuario_users', 5),
-(11, '2018_01_08_020032_create_medidas_table', 6),
-(12, '2018_01_09_034711_create_construccions_table', 7),
-(13, '2018_01_10_022048_create_tipos_table', 8),
-(14, '2018_01_14_173308_create_aplicacions_table', 9),
-(15, '2018_01_14_173458_create_fabricantes_table', 9),
-(16, '2018_01_14_173459_create_designs_table', 9),
-(17, '2018_01_15_045003_create_almacens_table', 10),
-(18, '2018_01_28_022913_TurnCostoNullable', 11),
-(19, '2018_01_28_025507_turn_factura_nullable', 12),
-(20, '2018_02_03_183120_create_distributions_table', 13),
-(21, '2018_02_03_201404_create_ejes_table', 14),
-(22, '2018_02_03_201420_create_eje_distributions_table', 15),
-(23, '2018_02_03_201438_create_llanta_ejes_table', 15),
-(24, '2018_02_03_201454_create_clases_table', 15),
-(25, '2018_02_03_211233_create_statuses_table', 16),
-(26, '2018_02_03_211405_create_tropa_models_table', 17),
-(27, '2018_02_03_211548_create_tropas_table', 17),
-(28, '2018_02_06_042351_add_position_to_eje_distributions', 18),
-(29, '2018_02_06_042648_create_distribution_positions_table', 19),
-(30, '2018_02_06_043043_add_distribution_postions_to_eje_distributions', 19),
-(31, '2018_02_07_223737_drop_positionin__eje_and_add_name', 20);
-
---
 -- Dumping data for table `tipos`
 --
 
@@ -182,6 +136,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (10, 'AIN', 'administrador_instancia@administracion.com', '$2y$10$o8/eGCcsM7Gh8Cs7KKjOKe18orrWFLAzmoLd/vroG.MNJ1kHH/yl6', NULL, '2017-12-20 08:26:03', '2017-12-20 08:26:03', 1, 0, '2017-12-20', 3),
 (11, 'LLNTR', 'llantero@administracion.com', '$2y$10$X6OnGgsx8XAE.wG2BmQLn.c6PqC9WgCObKeDPxUl8wd04wXtL5szy', '9d56IsZj3x5lNoK7tus24FJQFD6VLUK0BOKvYMqRHGz6cCdca1TzD1cjFGSC', '2017-12-20 08:27:40', '2017-12-20 08:27:40', 1, 0, '2017-12-20', 4),
 (12, 'EDBG', 'encargado_bodega@administracion.com', '$2y$10$CjtcGRZiEHE8ldZuTNy5bu1J2WPJGnFkMs8KMNYP2QP/B6wd9g2pq', 'J6hVtQRxHayebpfti1dc5xosLwiP57NCIKy1wb8Bs2TiagKsuEuvbAgpIpP4', '2017-12-20 08:29:29', '2017-12-20 08:29:29', 1, 0, '2017-12-20', 5);
+
+--
+-- Dumping data for table `almacens`
+--
+
+INSERT INTO `almacens` (`id`, `marca_id`, `medida_id`, `dot`, `profundidad`, `construccion_id`, `tipo_id`, `design_id`, `costo`, `factura`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '1006', '0', 1, 1, 1, 3, '', NULL, NULL),
+(2, 3, 1, 'DOT', 'Prof', 2, 1, 2, 3, 'N/A', '2018-01-24 00:24:59', '2018-01-24 00:24:59'),
+(3, 2, 1, 'DOTRGSTR', '93', 2, 1, 2, NULL, NULL, '2018-01-28 08:55:59', '2018-01-28 08:55:59');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
