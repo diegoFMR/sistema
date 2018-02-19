@@ -22,17 +22,11 @@ Route::group(['middleware' => 'auth'], function(){
 		return view('superadmin/dashboard');
 	})->name('super/admin/dashboard');
 
-	Route::get('root/admin/dashboard', function(){
-		return view('root/dashboard');
-	})->name('root/admin/dashboard');
+	Route::get('root/admin/dashboard', 'DashboardController@root')->name('root/admin/dashboard');
 
-	Route::get('admin/dashboard', function(){
-		return view('admin/dashboard');
-	})->name('admin/dashboard');
+	Route::get('admin/dashboard', 'DashboardController@admin')->name('admin/dashboard');
 
-	Route::get('llantero/dashboard', function(){
-		return view('llantero/dashboard');
-	})->name('llantero/dashboard');
+	Route::get('llantero/dashboard', 'DashboardController@llantero')->name('llantero/dashboard');
 
 	Route::get('bodega/dashboard', 'DashboardController@bodeguero')->name('bodega/dashboard');
 
